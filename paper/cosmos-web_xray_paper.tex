@@ -38,7 +38,7 @@
 %
 \begin{document}
 
-\title{A Deep X-ray Catalog of Galaxy Groups: Characterizing the Hot Intragroup Medium in COSMOS-Web to $z=3.7$}
+\title{X-ray Properties of Galaxy Groups in COSMOS-Web to $z=3.7$: Characterizing the Hot Intragroup Medium with JWST and Chandra+XMM-Newton (Paper~I)}
 
 \author{Ghassem Gozaliasl\inst{1,2}\thanks{e-mail: ghassem.gozaliasl@aalto.fi}}
 
@@ -49,7 +49,7 @@ Department of Physics, University of Helsinki, Gustaf H\"{a}llstr\"{o}m katu 2, 
 \date{February 25, 2026}
 
 \abstract{
-Galaxy groups represent the most abundant environments for galaxies across cosmic time, yet their X-ray properties remain poorly characterized, especially at high redshifts ($z > 1.5$). We present a comprehensive X-ray analysis of 1,678 galaxy groups identified in the COSMOS-Web field using the AMICO algorithm applied to JWST-selected galaxies from the COSMOS2025 catalog. Utilizing deep Chandra and XMM Newton X-ray observations combined with multi-wavelength data from JWST NIRCam, we characterize the hot intragroup medium (IGM) properties including X-ray luminosity, temperature, and entropy out to $z \sim 3.7$. Our analysis reveals significant evolution in X-ray detectability with redshift and halo mass, with implications for understanding AGN feedback efficiency and gas removal processes in groups. We examine the relationship between X-ray detection and optical/NIR group properties, uncovering the diversity of group populations from gas-rich, dynamically relaxed systems to gas-poor systems where feedback may have expelled the hot IGM. By stacking undetected groups, we constrain the average X-ray properties of systems below individual detection thresholds, providing a more complete census of the baryon content and thermal history of the group population. These results bridge X-ray and optical selection methods, establishing the COSMOS-Web group catalog as a unique laboratory for studying group physics and evolution across cosmic time.
+Galaxy groups represent the most abundant environments for galaxies across cosmic time, yet their X-ray properties remain poorly characterized, especially at high redshifts ($z > 1.5$). We present a comprehensive X-ray analysis of 1,678 galaxy groups (the CW-All sample) identified in the COSMOS-Web field using the AMICO algorithm applied to JWST-selected galaxies from the COSMOS2025 catalog. Utilizing deep Chandra and XMM-Newton X-ray observations combined with multi-wavelength data from JWST NIRCam, we characterize the hot intragroup medium (IGM) properties including X-ray luminosity, temperature, and halo mass out to $z \sim 3.7$. Applying a uniform aperture-photometry pipeline with a detection threshold of SNR~$\geq 2.0$, we detect X-ray emission from 497 groups (29.6\%), with detected systems exhibiting median luminosities of $\log_{10}(L_{\rm X}/{\rm erg~s}^{-1}) \approx 42.9$ at a median redshift of $z \approx 1.1$. Stacking undetected groups across nine redshift bins yields high-significance composite detections out to $z \sim 3.7$, revealing steadily rising ensemble luminosities and halo masses consistent with $\log_{10}(M_{200}/M_{\odot}) \approx 12$--13. These results bridge X-ray and optical selection methods, establishing the COSMOS-Web group catalog as a unique laboratory for studying group physics and evolution across cosmic time. A companion paper (Paper~II; Gozaliasl et al., in preparation) presents the same analysis for the subset of 912 COSMOS-Web Hickson Compact Groups (CW-HCG; Hasinger \& Others, in preparation), enabling a controlled comparison between the general group population and compact group systems.
 }{galaxies: evolution -- galaxies: clusters -- galaxies: groups -- galaxies: high-redshift -- surveys}{}{}{}
 
 \maketitle
@@ -68,7 +68,7 @@ The COSMOS field has been a cornerstone for X-ray studies of galaxy groups and c
 
 COSMOS-Web, the largest JWST Cycle~1 programme, extends this legacy into the near-infrared regime, mapping $0.54~\mathrm{deg}^2$ with NIRCam and providing unprecedented depth and resolution for high-redshift galaxy studies \citep{Casey2023}. The COSMOS-Web group catalog, identified using the Adaptive Matched Identifier of Clustered Objects (AMICO) algorithm applied to 389,248 high-quality galaxies from the COSMOS2025 catalog \citep{Shuntov2025}, contains 1678 groups over an effective area of $0.45~\mathrm{deg}^2$ \citep{Toni2025}. This JWST-selected sample, with more than 500 systems possessing spectroscopic confirmations \citep{Khostovan2025}, offers a complementary view to previous X-ray-selected group samples. While X-ray selection naturally favors gas-rich, dynamically relaxed systems, optical/NIR selection captures the full diversity of group populations, including gas-poor systems where feedback may have expelled the hot IGM. This enables studies of the X-ray properties of optically/NIR-identified systems, bridging the gap between selection methods and providing a more complete census of group baryon content.
 
-In this work, we characterize the X-ray emission from COSMOS-Web galaxy groups using a uniform analysis pipeline that applies identical photometric apertures, background subtraction, and calibration choices to every object. Our goals are to (i) quantify the detection rate of diffuse X-ray emission from JWST-identified groups and understand how it differs from X-ray-selected samples, (ii) measure fluxes, luminosities, and mass proxies for individual detections, and (iii) recover ensemble properties via stacking for groups below the individual detection threshold, following the methodology validated in recent stacking and scaling-relation studies of galaxy groups and centrals (e.g.\ \citealt{Anderson2015,PlanckCollaboration2013,Popesso2025,Robson2023,Marini2024}). We analyze both the full COSMOS-Web group sample (CW-All) and a subset of 912 Hickson compact groups (CW-HCG) observed within the COSMOS-Web footprint (Hasinger \& Others in preparation), enabling a controlled comparison between the general group population and compact systems that may represent an earlier stage of group evolution. By combining JWST's deep NIR imaging with the existing COSMOS X-ray data, we probe group X-ray properties across $0.1 \lesssim z \lesssim 3$, spanning the epoch when groups were actively assembling and their baryon content was being shaped by feedback processes.
+In this work (Paper~I of a two-paper series), we characterize the X-ray emission from the full COSMOS-Web galaxy group sample (CW-All; 1,678 systems from \citealt{Toni2025}) using a uniform analysis pipeline that applies identical photometric apertures, background subtraction, and calibration choices to every object. Our goals are to (i) quantify the detection rate of diffuse X-ray emission from JWST-identified groups and understand how it differs from X-ray-selected samples, (ii) measure fluxes, luminosities, and mass proxies for individual detections, and (iii) recover ensemble properties via stacking for groups below the individual detection threshold, following the methodology validated in recent stacking and scaling-relation studies of galaxy groups and centrals (e.g.\ \citealt{Anderson2015,PlanckCollaboration2013,Popesso2025,Robson2023,Marini2024}). By combining JWST's deep NIR imaging with the existing COSMOS X-ray data, we probe group X-ray properties across $0.1 \lesssim z \lesssim 3.7$, spanning the epoch when groups were actively assembling and their baryon content was being shaped by feedback processes. A companion paper (Paper~II; Gozaliasl et al., in preparation) applies the same pipeline to the subset of 912 COSMOS-Web Hickson Compact Groups (CW-HCG; Hasinger \& Others in preparation), providing a controlled comparison between the general group population and compact systems that may represent an earlier stage of group evolution or a distinct evolutionary track shaped by stronger tidal interactions.
 
 \section{Data}
 
@@ -90,13 +90,11 @@ Brightest group galaxies (BGGs) in the catalog were selected using a hybrid sche
 
 For the present X-ray analysis, we utilize the full COSMOS-Web group sample (hereafter CW-All), corresponding to all 1678 systems from the \citet{Toni2025} catalog. This sample spans $0.1 \lesssim z \lesssim 3.7$, covering nearly 12~Gyr of cosmic history and enabling studies of group X-ray properties from the least rich population of groups to the formation of the most massive clusters.
 
-\subsection{Hickson Compact Groups (Hasinger et al.\ in preparation)}
+\subsection{COSMOS-Web Hickson Compact Groups (Hasinger et al.\ in preparation)}
 
-In addition to the full COSMOS-Web group catalog, we analyze a complementary sample of 912 Hickson compact groups (hereafter CW-HCG) observed within the COSMOS-Web footprint (Hasinger \& Others in preparation). Hickson compact groups were originally defined by \citet{Hickson1982} based on specific selection criteria: (1) containing at least four galaxies within a magnitude range of 3~mag from the brightest member, (2) having a high surface density such that the angular diameter of the smallest circle containing the group centers is less than three times the diameter of the largest galaxy, and (3) being isolated from other galaxies of comparable brightness. These criteria select systems with typically 4--5 galaxies in a compact configuration, high surface density, and low velocity dispersion.
+Within the COSMOS-Web footprint, 912 Hickson compact groups (hereafter CW-HCG) have been identified by Hasinger \& Others (in preparation) following the original selection criteria of \citet{Hickson1982}: at least four member galaxies within 3~mag of the brightest member, high angular surface density, and isolation from comparable-brightness neighbours. Compact groups are thought to represent dense, dynamically evolving systems, potentially at an earlier stage of group evolution or undergoing enhanced tidal interactions and galaxy merging \citep{MendesDeOliveira1994}.
 
-The original Hickson catalog identified 100 compact groups in the local universe based on visual inspection of photographic plates, with a median rest-frame surface brightness in the R band of $\mu_R \sim 26.5$~mag~arcsec$^{-2}$ \citep{Hickson1982}. Subsequent studies have shown that compact groups represent dense, dynamically evolving systems where galaxies are in close proximity and may be undergoing active interactions and mergers \citep{MendesDeOliveira1994}. These systems are thought to represent an earlier stage of group evolution or a distinct class of dense groups that may eventually merge to form a single galaxy.
-
-The CW-HCG sample provides a controlled comparison to the general group population, enabling investigation of whether compact groups exhibit different X-ray properties compared to the broader group population. This comparison is particularly valuable for understanding the role of group compactness and dynamical state in shaping the hot intragroup medium, as compact groups may represent systems in earlier stages of virialization or undergoing more active assembly processes. The high surface density and close galaxy separations in compact groups may lead to enhanced tidal interactions and gas stripping, potentially affecting the X-ray emission properties of the intragroup medium.
+The CW-HCG sample spans $0.12 \lesssim z \lesssim 3.83$ with a median redshift of $z \approx 0.97$. The same X-ray analysis pipeline described in Section~\ref{sec:analysis} is applied to CW-HCG in Paper~II (Gozaliasl et al., in preparation), which presents a full characterization of their X-ray properties, detection rates, stacked luminosities, and comparison with the CW-All population. In Paper~I we include the CW-HCG only as a brief comparison sample in the detection summary (Table~\ref{tab:detection}) and the redshift-distribution figure (Figure~\ref{fig:redshift_dist}).
 
 \subsection{X-ray Data and Observations}
 
@@ -110,7 +108,7 @@ Figure~\ref{fig:xray_map} shows the full COSMOS X-ray map in the 0.5--2.0~keV ba
 
 Figure~\ref{fig:group1_rgb} presents a composite JWST NIRCam RGB image of Group~1 (CW-All ID=1.0, $z = 0.710$, SNR=28.2) with the Chandra+XMM-Newton X-ray emission overlaid in purple, illustrating the spatial coincidence of the hot intragroup medium with the galaxy overdensity. The diffuse X-ray glow traces the gravitational potential well of the group halo, while the JWST imaging reveals the member galaxies and their morphologies in exquisite detail. This system represents the highest-significance X-ray detection in our sample and serves as a showcase example of the multi-wavelength data available for COSMOS-Web groups.
 
-Figure~\ref{fig:redshift_dist} presents the redshift distribution of both catalogs, showing that the CW-All sample spans $0.08 \lesssim z \lesssim 3.70$ with a median redshift of $z \approx 1.1$, while the CW-HCG sample covers $0.12 \lesssim z \lesssim 3.83$ with a median redshift of $z \approx 0.97$. The redshift distributions reveal that both samples peak at $z \sim 1$--1.5, corresponding to the epoch of peak cosmic star formation and structure assembly. The CW-HCG sample shows a slightly lower median redshift, consistent with the expectation that compact groups may represent earlier stages of group evolution or preferentially form at lower redshifts where galaxy interactions are more common.
+Figure~\ref{fig:redshift_dist} presents the redshift distribution of the CW-All sample, which spans $0.08 \lesssim z \lesssim 3.70$ with a median redshift of $z \approx 1.1$. The CW-HCG comparison sample (N=912, $z \approx 0.97$ median) is overlaid for orientation. Both samples peak at $z \sim 1$--1.5, corresponding to the epoch of peak cosmic star formation and structure assembly.
 
 \section{Analysis methodology}
 \label{sec:analysis}
@@ -243,21 +241,21 @@ To characterise populations that fall below the single-object detection threshol
 
 \subsection{Detection results}
 
-Both catalogs show modest detection rates, reflecting the low surface brightness of intragroup gas at the survey depths. Table~\ref{tab:detection} summarises the key detection statistics.
+The CW-All sample shows a detection rate that reflects the low surface brightness of intragroup gas at the survey depths. Table~\ref{tab:detection} summarises the key detection statistics for both CW-All and, for comparison, the CW-HCG sample (whose full X-ray analysis is presented in Paper~II).
 
-The detection fractions of $\sim 30$--33~per~cent highlight the improved sensitivity achieved with the refined redshift measurements and optimized analysis pipeline. Detected systems in both samples cluster around $z \sim 1$ and exhibit median luminosities near $10^{42.9}$~erg~s$^{-1}$, consistent with group-scale halos hosting hot atmospheres. The CW-HCG sample shows a slightly higher detection rate (33.4\%) compared to CW-All (29.6\%), which may reflect the enhanced surface brightness of compact group cores, though both samples probe similar luminosity regimes.
+We detect X-ray emission from 497 of 1,678 CW-All groups (29.6\%). Detected systems cluster around $z \sim 1.1$ and exhibit a median luminosity of $\log_{10}(L_{\rm X}/\mathrm{erg~s}^{-1}) \approx 42.97$ and median halo mass $M_{200} \approx 2.9 \times 10^{13}~M_{\odot}$, consistent with group-scale halos hosting established hot atmospheres. The detection fraction reflects both genuine low surface brightness at high redshift and the SNR~$\geq 2.0$ threshold adopted for this work (see \S\ref{sec:detection}).
 
-Figure~\ref{fig:LX_z} presents the $L_{\rm X}$--redshift primary diagnostic analysis. The $L_{\rm X}$--redshift plane (Figure~\ref{fig:LX_z}, introduced in \S\ref{sec:LX_z}) summarises detections and upper limits for both samples, with stacked medians from Section~\ref{sec:stacking} over-plotted.
+The $L_{\rm X}$--redshift plane (Figure~\ref{fig:LX_z}) summarises individual detections and upper limits for the CW-All sample, with stacked median luminosities from Section~\ref{sec:stacking} over-plotted. Table~\ref{tab:detection} also lists CW-HCG statistics for reference; a detailed comparison of the two samples' detection properties is deferred to Paper~II.
 
 \subsection{Stacking analysis}
 
-Given the prevalence of non-detections, stacking was crucial to recovering ensemble X-ray properties. The procedure described in Section~\ref{sec:stacking} delivered high-SNR composite detections in all five redshift bins for both catalogs. Table~\ref{tab:stacking_all} lists the CW-All ensemble measurements, while Table~\ref{tab:stacking_hcg} reports the CW-HCG results.
+Given the prevalence of non-detections, stacking is crucial for recovering ensemble X-ray properties of the CW-All population. The procedure described in Section~\ref{sec:stacking} delivers high-SNR composite detections in all nine redshift bins. Table~\ref{tab:stacking_all} lists the CW-All ensemble measurements (median redshift, number of sources, stacked SNR, flux, and $L_{\rm X}$ per bin). Stacked $M_{200}^{L_{\rm X}}$ values are included in the full electronic table.
 
-Both samples yield significant stacked detections in every bin, validating the presence of diffuse intragroup gas despite the low individual detection rate. Figure~\ref{fig:stacking} summarises the stacked rest-frame luminosities, observed-frame fluxes, SNR, and $M_{200}^{L_{\rm X}}$ as a function of redshift for both catalogs, and directly compares stacks built from all groups in each bin (solid curves) to stacks restricted to individually detected systems (dashed). The close agreement between the all-groups and detections-only curves at $z \lesssim 2$ indicates that the stacked signals are representative of the full group population rather than being driven solely by a small number of bright detections; differences in the highest-redshift bins mainly reflect the limited number of compact groups and the increasing prevalence of massive halos in the CW-All sample.
+Significant stacked detections are obtained in every bin, validating the presence of diffuse intragroup gas despite the low individual detection rate. Figure~\ref{fig:stacking} shows the stacked rest-frame luminosities, observed-frame fluxes, SNR, and $M_{200}^{L_{\rm X}}$ as a function of redshift, comparing stacks built from all groups in each bin (solid curve) to stacks restricted to individually detected systems (dashed). The close agreement between the two curves at $z \lesssim 2$ indicates that the stacked signals are representative of the full group population and not driven solely by bright outliers. Stacking results for the CW-HCG sample are presented in Paper~II.
 
-\subsection{Summary}
+\subsection{Summary of CW-All X-ray results}
 
-Using a uniform X-ray analysis pipeline with a SNR~$\geq 2.0$ detection threshold, we detect X-ray emission from 305 CW-HCG groups (33.4\%) and 497 CW-All groups (29.6\%). Detected systems exhibit median luminosities of $10^{42.9}$~erg~s$^{-1}$ and temperatures around 1.3--1.4~keV, indicative of group-scale hot atmospheres. Stacking across five redshift bins yields high-significance detections for both samples, revealing steadily increasing luminosities with redshift and halo masses of order $\log_{10}(M_{200}/M_{\odot}) \approx 12$. The similar stacked luminosities of the CW-All and CW-HCG samples up to $z \sim 2$ suggest that compact group cores do not necessarily enhance the global X-ray output relative to the general group population when averaged over large samples. At higher redshift, the CW-All sample exhibits higher SNR and luminosities, likely reflecting the inclusion of more massive halos identified via the COSMOS-Web selection. The moderate temperatures ($T \sim 1.3$--1.4~keV) inferred for individual detections align with expectations for group-scale masses. All X-ray catalogs (\texttt{xray\_catalog.fits}) include source-by-source photometry, detection flags, and physical properties and are ready for further scientific exploitation.
+Using a uniform X-ray analysis pipeline with a SNR~$\geq 2.0$ detection threshold, we detect X-ray emission from 497 of 1,678 CW-All groups (29.6\%). Detected systems span $0.1 \lesssim z \lesssim 3.7$ and exhibit a median luminosity of $\log_{10}(L_{\rm X}/\mathrm{erg~s}^{-1}) \approx 42.97$ and median temperature $T \sim 1.3$--1.4~keV, indicative of group-scale hot atmospheres. Halo masses derived from the weak-lensing calibrated $M$--$L_{\rm X}$ scaling relation peak around $M_{200} \sim 2.9 \times 10^{13}~M_{\odot}$ for individual detections. Stacking across nine redshift bins yields high-significance composite detections out to $z \sim 3.7$, with ensemble luminosities rising from $L_{\rm X} \sim 10^{42}$~erg~s$^{-1}$ at $z \approx 0.4$ to $\sim 10^{44}$~erg~s$^{-1}$ at $z \approx 3.2$, consistent with the expected growth in halo mass with redshift in our flux-limited stack. Stacked halo masses reach $\log_{10}(M_{200}/M_{\odot}) \approx 13$ in the highest-redshift bins. The full source-by-source photometry, detection flags, and physical properties are compiled in \texttt{xray\_catalog\_cwall.fits}. A parallel analysis of the 912 CW-HCG compact groups, including a direct comparison of their detection rates and stacked luminosities with the CW-All results, is presented in Paper~II (Gozaliasl et al., in preparation).
 
 %-------------------------------------------------------------------
 
@@ -457,37 +455,36 @@ For the CW-All catalog, the median ratio of binned-median to annulus-based $L_{\
 \begin{figure}
 \centering
 \includegraphics[width=\columnwidth]{figures/redshift_distribution}
-\caption{Redshift distribution of the COSMOS-Web group catalogs. Panel~(a) shows the histogram comparison between CW-All (N=1678, blue) and CW-HCG (N=912, orange) samples, with cumulative distributions overlaid as dashed lines on the secondary y-axis (right). Panel~(b) shows the X-ray detection rate as a function of redshift bin for both samples. The distributions reveal that both samples peak at $z \sim 1$--1.5, with CW-HCG showing a slightly lower median redshift ($z \approx 0.97$) compared to CW-All ($z \approx 1.1$).}
+\caption{Redshift distribution of the COSMOS-Web group samples used in this work. Panel~(a): histogram of the CW-All sample (N=1678, blue), with the CW-HCG comparison sample (N=912, orange) overlaid; cumulative distributions are shown as dashed lines. Both samples peak at $z \sim 1$--1.5, with median redshifts of $z \approx 1.1$ (CW-All) and $z \approx 0.97$ (CW-HCG). Panel~(b): X-ray detection rate as a function of redshift for CW-All (blue); the CW-HCG detection rate is shown in Paper~II.}
 \label{fig:redshift_dist}
 \end{figure}
 
 \begin{figure*}
 \centering
 \includegraphics[width=0.49\textwidth]{figures/upper_limit_diagnostics_cw_all}
-\includegraphics[width=0.49\textwidth]{figures/upper_limit_diagnostics_cw_hcg}
-\caption{Upper-limit diagnostics for the CW-All (left) and CW-HCG (right) samples. Left panels: flux distribution histograms showing detected sources (blue), all upper limits (orange), and flagged upper limits (red) that fall below the first quartile of the detected flux distribution. Vertical dashed and dotted lines mark the Q1 and median of detected fluxes. Right panels: redshift distributions of flagged versus unflagged non-detections. Flagged sources are monitored for quality control; masking them changes the stacked fluxes by less than the statistical uncertainties.}
+\caption{Upper-limit diagnostics for the CW-All sample. Left panel: flux distribution histogram showing detected sources (blue), all upper limits (orange), and flagged upper limits (red) that fall below the first quartile of the detected flux distribution. Vertical dashed and dotted lines mark the Q1 and median of detected fluxes. Right panel: redshift distribution of flagged versus unflagged non-detections. Flagged sources are monitored for quality control; masking them changes the stacked fluxes by less than the statistical uncertainties. The equivalent diagnostic for CW-HCG is shown in Paper~II.}
 \label{fig:upper_limits}
 \end{figure*}
 
 \begin{table}
-\caption{Detection summary for COSMOS-Web group samples (SNR $\geq 2.0$). Median properties are computed for the detected subsample.}
+\caption{Detection summary for COSMOS-Web group samples (SNR $\geq 2.0$). Median properties are computed for the detected subsample. The CW-All sample is the primary focus of this paper (Paper~I); a full analysis of CW-HCG is presented in Paper~II (Gozaliasl et al., in preparation). CW-HCG statistics here are included for reference only.}
 \label{tab:detection}
 \centering
 \begin{tabular}{lrrrcccr}
 \hline\hline
 Catalog & $N_{\rm tot}$ & $N_{\rm det}$ & Detected (\%) & Median flux (erg cm$^{-2}$ s$^{-1}$) & Median $\log_{10} L_{\rm X}$ & Median $z$ & Median $M_{200}^{L_{\rm X}}$ ($M_{\odot}$) \\
 \hline
-CW-HCG & 912  & 305 & 33.4 & $1.16 \times 10^{-15}$ & 42.88 & 0.97 & $2.82 \times 10^{13}$ \\
 CW-All  & 1678 & 497 & 29.6 & $1.09 \times 10^{-15}$ & 42.97 & 1.10 & $2.88 \times 10^{13}$ \\
+CW-HCG$^{a}$ & 912  & 305 & 33.4 & $1.16 \times 10^{-15}$ & 42.88 & 0.97 & $2.82 \times 10^{13}$ \\
 \hline
 \end{tabular}
+\tablefoot{$^{a}$ CW-HCG detection statistics are listed for comparison; the full CW-HCG X-ray analysis, stacking results, and comparison with CW-All are presented in Paper~II.}
 \end{table}
 
 \begin{figure*}
 \centering
-\includegraphics[width=0.49\textwidth]{figures/luminosity_redshift_cw_all}
-\includegraphics[width=0.49\textwidth]{figures/luminosity_redshift_cw_hcg}
-\caption{Rest-frame 0.5--2.0~keV luminosity $L_{\rm X}$ as a function of redshift for the CW-All (left) and CW-HCG (right) samples. Large open circles: individual detections (SNR~$\geq 2.0$). Grey points: non-detections with 95\% Bayesian upper limits; blue points: upper limits below the first quartile of the detected flux distribution (flagged). Orange squares: stacked median $L_{\rm X}$ per redshift bin (Tables~\ref{tab:stacking_all} and~\ref{tab:stacking_hcg}). This figure is the primary diagnostic for X-ray luminosity across the sample (see \S\ref{sec:LX_z}).}
+\includegraphics[width=0.8\textwidth]{figures/luminosity_redshift_cw_all}
+\caption{Rest-frame 0.5--2.0~keV luminosity $L_{\rm X}$ as a function of redshift for the CW-All sample. Large open circles: individual detections (SNR~$\geq 2.0$). Grey points: non-detections with 95\% Bayesian upper limits; blue points: upper limits below the first quartile of the detected flux distribution (flagged). Orange squares: stacked median $L_{\rm X}$ per redshift bin (Table~\ref{tab:stacking_all}). This is the primary diagnostic for X-ray luminosity across the CW-All sample (see \S\ref{sec:LX_z}). The equivalent diagram for CW-HCG is shown in Paper~II.}
 \label{fig:LX_z}
 \end{figure*}
 
@@ -514,27 +511,7 @@ $z_{\rm min}$ & $z_{\rm max}$ & $\langle z \rangle$ & $N_{\rm src}$ & SNR & \mul
 \tablefoot{Columns also include $\log_{10} M_{200}$ (dex): see full electronic table.}
 \end{table*}
 
-\begin{table*}
-\caption{Stacked X-ray measurements for the CW-HCG sample.}
-\label{tab:stacking_hcg}
-\centering
-\begin{tabular}{cccrrcrrr}
-\hline\hline
-$z_{\rm min}$ & $z_{\rm max}$ & $\langle z \rangle$ & $N_{\rm src}$ & SNR & \multicolumn{2}{c}{Flux (erg cm$^{-2}$ s$^{-1}$)} & \multicolumn{2}{c}{$L_{\rm X}$ (erg s$^{-1}$)} \\
- &  &  &  &  & Flux & $\sigma_F$ & $L_{\rm X}$ & $\sigma_L$ \\
-\hline
-0.25 & 0.50 & 0.38 &  51 &  6.53 & $2.62\times10^{-15}$ & $4.02\times10^{-16}$ & $1.64\times10^{42}$ & $2.51\times10^{41}$ \\
-0.50 & 0.75 & 0.63 & 112 & 11.90 & $1.07\times10^{-15}$ & $8.95\times10^{-17}$ & $3.02\times10^{42}$ & $2.54\times10^{41}$ \\
-0.75 & 1.00 & 0.88 & 223 & 14.07 & $6.23\times10^{-16}$ & $4.43\times10^{-17}$ & $3.82\times10^{42}$ & $2.72\times10^{41}$ \\
-1.00 & 1.25 & 1.16 & 112 & 10.30 & $4.34\times10^{-16}$ & $4.21\times10^{-17}$ & $5.06\times10^{42}$ & $4.92\times10^{41}$ \\
-1.25 & 1.50 & 1.39 &  88 &  6.01 & $4.94\times10^{-16}$ & $8.22\times10^{-17}$ & $9.61\times10^{42}$ & $1.60\times10^{42}$ \\
-1.50 & 1.75 & 1.64 &  82 &  9.06 & $4.34\times10^{-16}$ & $4.79\times10^{-17}$ & $1.32\times10^{43}$ & $1.45\times10^{42}$ \\
-1.75 & 2.00 & 1.88 &  23 &  3.66 & $4.51\times10^{-16}$ & $1.23\times10^{-16}$ & $1.80\times10^{43}$ & $4.93\times10^{42}$ \\
-2.00 & 2.50 & 2.25 &  80 &  6.07 & $2.16\times10^{-16}$ & $3.56\times10^{-17}$ & $2.09\times10^{43}$ & $3.43\times10^{42}$ \\
-2.50 & 3.80 & 3.15 &  39 &  6.44 & $3.98\times10^{-16}$ & $6.18\times10^{-17}$ & $6.18\times10^{43}$ & $9.61\times10^{42}$ \\
-\hline
-\end{tabular}
-\end{table*}
+% Table of CW-HCG stacked measurements is presented in Paper II (Gozaliasl et al., in preparation).
 
 \begin{figure}
 \centering
@@ -546,7 +523,7 @@ $z_{\rm min}$ & $z_{\rm max}$ & $\langle z \rangle$ & $N_{\rm src}$ & SNR & \mul
 \begin{figure*}
 \centering
 \includegraphics[width=\textwidth]{figures/stacking_comparison_multi}
-\caption{Comparison of stacked X-ray properties as a function of redshift for stacks built from all groups in each bin (solid lines) versus stacks restricted to individually detected systems (dashed lines), for the CW-All (blue circles) and CW-HCG (orange squares) samples. From left to right the panels show rest-frame $L_{\rm X}$, observed-frame flux, stacked SNR, and halo mass $M_{200}^{L_{\rm X}}$. The close agreement between the all-groups and detections-only curves at $z \lesssim 2$ indicates that the stacked signals are representative of the full group population rather than being driven solely by a small number of bright detections.}
+\caption{Stacked X-ray properties of the CW-All sample as a function of redshift. Solid lines show stacks built from all groups in each bin; dashed lines show stacks restricted to individually detected systems. From left to right: rest-frame $L_{\rm X}$, observed-frame flux, stacked SNR, and halo mass $M_{200}^{L_{\rm X}}$. The close agreement between the two curves at $z \lesssim 2$ indicates that the stacked signals are representative of the full group population and not dominated by a small number of bright outliers. The equivalent stacking comparison for CW-HCG, including a direct CW-All vs.\ CW-HCG comparison panel, is presented in Paper~II.}
 \label{fig:stacking}
 \end{figure*}
 
@@ -561,14 +538,7 @@ $z_{\rm min}$ & $z_{\rm max}$ & $\langle z \rangle$ & $N_{\rm src}$ & SNR & \mul
 \label{fig:profiles_all}
 \end{figure*}
 
-\begin{figure*}
-\centering
-\includegraphics[width=0.32\textwidth]{figures/stacking_radial_profiles_z_0.05_0.25}
-\includegraphics[width=0.32\textwidth]{figures/stacking_radial_profiles_z_0.25_0.55}
-\includegraphics[width=0.32\textwidth]{figures/stacking_radial_profiles_z_0.55_0.95}
-\caption{Same as Fig.~\ref{fig:profiles_all}, but for the compact-group subsample (CW-HCG). These panels highlight that compact systems are more centrally peaked and more significantly extended relative to the PSF at fixed redshift.}
-\label{fig:profiles_hcg}
-\end{figure*}
+% Fig. A.2 (CW-HCG radial profiles) is presented in Paper II (Gozaliasl et al., in preparation).
 
 \begin{figure*}
 \centering
