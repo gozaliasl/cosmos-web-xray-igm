@@ -1,0 +1,210 @@
+# Configuration file for X-ray analysis of galaxy groups
+#
+# QUICK TUNING GUIDE FOR DETECTION:
+# =================================
+# If you're not detecting sources, try these adjustments:
+#
+# 1. LOWER SNR THRESHOLD (detection/snr_threshold):
+#    - Current: 1.5σ (most sensitive, ~13% false positives)
+#    - Try: 1.5, 2.0, 2.5, or 3.0
+#    - Lower = more detections but more false positives
+#
+# 2. LOWER MIN COUNT RATE (detection/min_count_rate):
+#    - Current: 0.0 counts/s (no minimum)
+#    - Try: 0.0, 1e-4, 5e-4, or 1e-3
+#    - Lower = detect fainter sources (at higher false positive risk)
+#
+# 3. ADJUST APERTURE SIZE (photometry/aperture_radius_arcsec):
+#    - Current: 16.0 arcsec
+#    - Try: 8, 12, 16, 20, or 24 arcsec
+#    - Smaller = better for point sources
+#    - Larger = better for extended sources
+#
+# 4. CHANGE BACKGROUND METHOD (photometry/background_method):
+#    - Options: "annulus" or "local_median"
+#    - annulus = measures local background around each source
+#    - local_median = uses global background estimate
+#
+# After changing parameters, run: python main_analysis.py
+# =================================
+
+# Data paths
+data:
+  catalogs:
+    - name: "CW-All"
+      group_catalog: "/Users/gozalig1/Projects/compact-groups-xray-analysis/data/group-catalog/cosmos_web_groups_catalog.fits"
+      redshift_threshold: 4.0  # Catalog-specific threshold (moved away from bin edge to reduce discontinuity)
+    - name: "CW-HCG"
+      group_catalog: "/Users/gozalig1/Projects/compact-groups-xray-analysis/data/group-catalog/Py18_Groups.fits"
+      redshift_threshold: 4.0  # Catalog-specific threshold (moved away from bin edge to reduce discontinuity)
+  # X-ray map configuration for redshift-based selection
+  # Option 1: Single map (backward compatible)
+  # xray_map: "/path/to/map.fits"
+  # xray_error_map: "/path/to/error_map.fits"
+  # Option 2: Redshift-based maps (recommended)
+  xray_maps:
+    full:
+      map: "/Users/gozalig1/Projects/compact-groups-xray-analysis/data/xray-map/cosmos_chaxmm14_520.fits"
+      error: "/Users/gozalig1/Projects/compact-groups-xray-analysis/data/xray-map/cosmos_chaxmm14_520_err.fits"
+    masked:
+      map: "/Users/gozalig1/Projects/compact-groups-xray-analysis/data/xray-map/cosmos_chaxmm14_noem_520.fits"
+      error: "/Users/gozalig1/Projects/compact-groups-xray-analysis/data/xray-map/cosmos_chaxmm14_noem_520_err.fits"
+  # Global default redshift threshold for map selection (used if catalog doesn't specify its own)
+  # Use full map for z < threshold, masked for z >= threshold
+  # RECOMMENDED: Set threshold away from stacking redshift bin edges (e.g., 1.8 instead of 2.0) to reduce discontinuity
+  #redshift_threshold: 
+
+# Output paths
+output:
+  results_dir: "outputs/results"
+  figures_dir: "outputs/figures"
+  stacking_dir: "outputs/stacking"
+
+# Photometry parameters
+# BACKGROUND STRATEGY:
+# - First pass: fixed physical annulus (background_inner_kpc, background_outer_kpc) for all groups.
+# - Sigma-clipping (background_sigma_clip) reduces contamination from bright pixels in the annulus.
+# - For DETECTED groups, optional adaptive background: set background_radius_mode to "adaptive_r500"
+#   so the annulus is scaled by R500 (inner = background_inner_factor_r500 * R500, outer = background_outer_factor_r500 * R500).
+#   This pushes the background ring further out and reduces contamination from extended group emission
+#   or nearby sources between inner/outer ring (e.g. showcased group with bright source in annulus).
+# - Redshift-binned median background: set background_use_redshift_binned_median: true to also compute
+#   background as median of annulus measurements in the same redshift bin. Output includes both annulus-based
+#   and binned-median-based columns (Background_Binned, Net_Counts_Binned, Flux_Binned, Luminosity_Binned, etc.).
+# RECOMMENDED: Annulus = primary for photometry; binned median = cross-check (keep both in output).
+# ITERATIVE WORKFLOW (current): (1) First pass with 300 kpc aperture and fixed 500–600 kpc background.
+# (2) Detect groups, get R500/R200 from mass. (3) Refine detected: adaptive aperture (R500), X-ray peak
+# centering, and optional R500-scaled background rings. (4) Re-run photometry only for detected groups.
+photometry:
+  aperture_mode: "physical_kpc"       # 'fixed', 'physical_kpc', or 'extent'
+  physical_radius_kpc: 300.0          # Physical aperture radius when using 'physical_kpc'
+  # Optional: test multiple aperture sizes (uncomment to enable)
+  aperture_radii_arcsec: [8.0, 12.0, 16.0, 20.0, 24.0]  # Multiple apertures for optimization
+  background_method: "annulus"         # 'annulus' or 'local_median'
+  background_inner_kpc: 450.0         # Physical inner radius for background annulus (first pass / non-detected)
+  background_outer_kpc: 750.0         # Physical outer radius for background annulus (first pass / non-detected)
+  # For detected groups with R500: use R500-scaled annulus to avoid contamination (set to "adaptive_r500")
+  background_radius_mode: "adaptive_r500"  # 'fixed_kpc' (use above radii) or 'adaptive_r500' (inner/outer = factor * R500)
+  background_inner_factor_r500: 2.0   # When adaptive_r500: inner ring = this * R500 (e.g. 1.5 = well outside group)
+  background_outer_factor_r500: 3.0   # When adaptive_r500: outer ring = this * R500 (reduced from 3.5 to avoid going too far)
+  min_aperture_arcsec: 5.0            # Clamp minimum angular aperture size
+  max_aperture_arcsec: 120.0          # Clamp maximum angular aperture size
+  background_gap_arcsec: 1.0          # Minimum gap between aperture and background annulus
+  background_sigma_clip: 1.5          # Sigma clip for background annulus (reduced from 2.0 for more aggressive outlier removal)
+                                       # Set null to disable
+  min_coverage_fraction: 0.5          # Require at least this fraction of unmasked aperture pixels
+  # Redshift-binned median: also compute background as median in redshift bin (output has both techniques)
+  background_use_redshift_binned_median: true  # If true, add columns *_Binned for binned-median background
+  # Method: sliding window (z ± delta_z) or fixed bins
+  background_redshift_sliding_window: true  # If true, use sliding window (z ± delta_z) for each group
+  background_redshift_delta_z: 0.05        # Redshift window half-width (z ± delta_z) for sliding window method
+  background_redshift_min_groups: 5         # Minimum groups required in window for robust median (if fewer, expand window)
+  background_redshift_n_bins: null         # If set, use fixed bins instead of sliding window (null = use sliding window)
+  extent:
+    column: extent                     # Column name with extent; set to null to disable
+    units: "kpc"                   # arcsec | arcmin | kpc | pixel
+    apply_mode: null                  # null=auto (detected when aperture_mode: extent) | none | all | detected
+    scale_factor: 1.0                 # Multiply extent by this factor
+    min_arcsec: null                  # Optional clamp if needed
+    max_arcsec: null
+
+# Detection parameters - adjust these to improve detection rate!
+detection:
+  snr_threshold: 2.0                   # Signal-to-noise ratio threshold (try: 1.5, 2.0, 2.5, 3.0)
+                                       # Lower = more detections but higher false positive rate
+  # Contamination detection: flag high-z groups potentially contaminated by low-z groups
+  check_projected_contamination: true  # Enable contamination checking
+  low_z_threshold: 1.0                 # Maximum z for "low-z" groups (contaminants)
+  high_z_threshold: 1.5                # Minimum z for "high-z" groups (potentially contaminated)
+  contamination_radius_factor: 1.5     # Contamination radius = this × R500 (reduced from 3.0; 3×R500 was too large)
+  contamination_require_elevated_background: true  # Only flag if background is elevated (not just proximity)
+  contamination_background_factor: 1.5  # Background must be > this × binned median to flag contamination
+  flag_contaminated_detections: true  # If true, mark contaminated detections as suspected false positives
+                                       # 1.5σ: ~13% false positive rate
+                                       # 2.0σ: ~5% false positive rate
+                                       # 3.0σ: ~0.3% false positive rate
+  snr_robust_min: 2.                  # Detections with SNR < this are flagged as suspected false positives
+                                       # (e.g. high-z low-Lx detections from bg fluctuations)
+  redshift_high_z_cut: 2.0             # Redshift above which to apply Lx cut (z > this = high-z)
+  luminosity_min_high_z_erg_s: 1.0e42 # At z > redshift_high_z_cut, detections with Lx < this are flagged
+                                       # (below Lx–z trend; likely false or biased)
+  flag_suspected_false_positives: true # If true, set Is_Suspected_False_Positive when: annulus-only,
+                                       # SNR < snr_robust_min, or high-z with Lx < luminosity_min_high_z_erg_s
+  # Projected contamination detection: flag high-z groups potentially contaminated by low-z groups
+  check_projected_contamination: true  # Enable contamination checking
+  low_z_threshold: 1.0                 # Maximum z for "low-z" groups (contaminants)
+  high_z_threshold: 1.5                # Minimum z for "high-z" groups (potentially contaminated)
+  contamination_radius_factor: 3.0     # Contamination radius = this × R500 (or 500 kpc default)
+  flag_contaminated_detections: false  # If true, mark contaminated detections as suspected false positives
+  min_count_rate: 0.0                  # Minimum net signal (counts/s) required for detection
+                                       # Use values ~1e-4 to ~1e-3 if maps are in counts/s/pixel
+                                       # Set to 0.0 to rely solely on SNR threshold
+
+# X-ray properties
+xray:
+  energy_band_kev: [0.5, 2.0]         # Energy band in keV
+  count_rate_to_flux: 5.41e-12          # Single MOS detector count-rate -> flux conversion (counts/s to erg/cm^2/s)
+                                       # Use this value directly - DO NOT multiply by 2
+                                       # 0.5-2 keV conversion for Gamma=2.0, NH=2.5e20 cm^-2 (COSMOS field)
+
+# Mass estimation
+mass:
+  temperature_scaling: "consistent_mlx_lt"  # Scaling relation for M-T conversion
+                                       # Options: 'vikhlinin2009' (clusters), 'arnaud2005' (clusters),
+                                       #          'sun2009' (groups, old), 'lovisari2015' (groups, original),
+                                       #          'consistent_mlx_lt' (self-consistent with M-Lx + L-T, recommended)
+                                       # consistent_mlx_lt: Derived from M-Lx (leauthaud2010) + L-T (kettula2015)
+                                       #                    Ensures Lx → T → M gives same result as Lx → M directly
+  luminosity_scaling: "leauthaud2010"  # Scaling relation for M-L_X conversion
+
+# Cosmology (Planck 2018)
+cosmology:
+  H0: 67.4                             # Hubble constant (km/s/Mpc)
+  Om0: 0.315                           # Matter density
+  Ode0: 0.685                          # Dark energy density
+
+# Spectral modeling
+spectral:
+  model: "apec"                        # 'apec' or 'mekal'
+  metallicity: 0.3                     # Solar metallicity (Z/Z_sun)
+  nh_1e22: 0.025                       # Galactic NH in 10^22 cm^-2 (2.5e20 cm^-2 for COSMOS field)
+  nh_override_1e20: 2.5             # Optional override in 10^20 cm^-2 (e.g., 2.5 for 2.5e20 cm^-2)
+  spectral_index_gamma: 2.0          # Power-law photon index (if applicable, e.g., Crab-like)
+  temperature_grid_kev: [0.5, 0.7, 1.0, 1.5, 2.0, 3.0, 5.0, 7.0, 10.0]
+  temperature_lx_relation: "kettula2015"  # Lx-Tx scaling relation: 'kettula2015' (bias-corrected) or 'mantz2016'
+
+# Stacking parameters
+# STACKING BACKGROUND: For each source we extract a cutout and estimate background from an annulus
+# (inner = aperture_radius * background_inner_factor, outer = aperture_radius * background_outer_factor).
+# - background_method "local": subtract each source's own annulus median (default).
+# - background_method "bin_median": subtract the median of annulus levels in that redshift bin (recommended primary).
+# RECOMMENDED: bin_median = primary (stacking_results.fits); set save_local_comparison: true to also
+# run stacking with local and save stacking_results_local.fits for robustness comparison.
+stacking:
+  perform_stacking: true
+  redshift_bins: [0.5, 1.0, 2.0, 3.0, 3.8]  # Redshift bin edges (avoid 2.0/2.5 to reduce map-switch discontinuity)
+  min_groups_per_bin: 2                           # Minimum groups per redshift bin (lowered to avoid invalidating high-z bins)
+  stacking_method: "median"                       # 'median' more robust to outliers than 'mean' (recommended for high-z)
+  sigma_clip: 2.0                                # Sigma clipping threshold (relaxed to avoid over-clipping at high-z)
+  bootstrap_iterations: 1000                      # For error estimation
+  background_method: "bin_median"           # Primary: 'bin_median'; comparison: 'local' (if save_local_comparison)
+  save_local_comparison: false                     # If true, also run stacking with local and save stacking_results_local.fits
+  exclude_suspected_false_positives: false  # If true, exclude groups with Is_Suspected_False_Positive from stacking
+                                            # Set to false if too many groups excluded at high-z (causes SNR drop)
+  exclude_contaminated: true             # If true, exclude projected-contaminated groups from stacking
+                                            # Recommended: true to prevent contamination from biasing stacking results
+  background_inner_factor: 1.5                    # Inner radius factor (reduced from 2.0 to avoid over-subtraction)
+  background_outer_factor: 2.5                    # Outer radius factor (reduced from 3.0 to avoid over-subtraction)
+
+# Visualization
+visualization:
+  dpi: 150
+  figure_format: "png"
+  show_plots: false                    # Set to true for interactive mode
+  color_map: "viridis"
+
+# Analysis options
+analysis:
+  verbose: true
+  n_jobs: 4                            # Number of parallel jobs (-1 for all cores)
+  save_intermediate: true              # Save intermediate results

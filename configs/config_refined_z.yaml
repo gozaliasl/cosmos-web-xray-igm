@@ -1,0 +1,186 @@
+data:
+  catalogs:
+  - name: CW-All
+    group_catalog: /Users/gozalig1/Projects/compact-groups-xray-analysis/data/group-catalog/cosmos_web_groups_catalog_refined_z.fits
+    redshift_threshold: 4.0
+  - name: CW-HCG
+    group_catalog: /Users/gozalig1/Projects/compact-groups-xray-analysis/data/group-catalog/Py18_Groups_refined_z.fits
+    redshift_threshold: 4.0
+  chandra_point_source_catalog: /Users/gozalig1/Projects/compact-groups-xray-analysis/data/chandra_point_source_catalog/Chandra_COSMOS_Legacy_20151120_4d.fits
+  # Combined Chandra + XMM map (0.5–2 keV); same WCS/shape for full and masked
+  xray_maps:
+    use_masked: true   # ✅ USE THIS
+    full:
+      map: /Users/gozalig1/Projects/compact-groups-xray-analysis/data/xray-map/cosmos_chaxmm14_520.fits
+      error: /Users/gozalig1/Projects/compact-groups-xray-analysis/data/xray-map/cosmos_chaxmm14_520_err.fits
+    masked:
+      map: /Users/gozalig1/Projects/compact-groups-xray-analysis/data/xray-map/cosmos_chaxmm14_noem_520.fits
+      error: /Users/gozalig1/Projects/compact-groups-xray-analysis/data/xray-map/cosmos_chaxmm14_noem_520_err.fits
+  # Masking strategy (masked map):
+  #   - Mask all catalog X-ray sources (detected groups)
+  #   - Mask point sources from X-ray catalog
+  #   - Mask regions within 2×R200 of detected groups
+  #   - Use only clean, diffuse emission for stacking
+output:
+  results_dir: outputs/results
+  figures_dir: outputs/figures
+  stacking_dir: outputs/stacking
+photometry:
+  aperture_mode: physical_kpc
+  physical_radius_kpc: 300.0
+  aperture_radii_arcsec:
+  - 8.0
+  - 12.0
+  - 16.0
+  - 20.0
+  - 24.0
+  background_method: annulus
+  background_inner_kpc: 450.0
+  background_outer_kpc: 750.0
+  background_radius_mode: adaptive_r500
+  background_inner_factor_r500: 2.0
+  background_outer_factor_r500: 3.0
+  min_aperture_arcsec: 5.0
+  max_aperture_arcsec: 120.0
+  background_gap_arcsec: 1.0
+  background_sigma_clip: 1.5
+  min_coverage_fraction: 0.5
+  background_use_redshift_binned_median: true
+  background_redshift_sliding_window: true
+  background_redshift_delta_z: 0.05
+  background_redshift_min_groups: 5
+  background_redshift_n_bins: null
+  extent:
+    column: extent
+    units: kpc
+    apply_mode: null
+    scale_factor: 1.0
+    min_arcsec: null
+    max_arcsec: null
+detection:
+  snr_threshold: 2.0
+  check_projected_contamination: true
+  low_z_threshold: 1.0
+  high_z_threshold: 1.5
+  contamination_radius_factor: 3.0
+  contamination_require_elevated_background: true
+  contamination_background_factor: 1.5
+  flag_contaminated_detections: false
+  # Suspected false positives: only flagged (never removed from catalog). Used for transparency and optional stacking exclusion.
+  snr_robust_min: 2.  # Detections with 2.0 <= SNR < this are flagged as marginal (suspected FP)
+  redshift_high_z_cut: 2.0
+  luminosity_min_high_z_erg_s: 1.0e42
+  flag_suspected_false_positives: true
+  min_count_rate: 0.0
+xray:
+  energy_band_kev:
+  - 0.5
+  - 2.0
+  count_rate_to_flux: 5.41e-12
+mass:
+  temperature_scaling: consistent_mlx_lt
+  luminosity_scaling: leauthaud2010
+cosmology:
+  H0: 67.4
+  Om0: 0.315
+  Ode0: 0.685
+spectral:
+  model: apec
+  metallicity: 0.3
+  nh_1e22: 0.025
+  nh_override_1e20: 2.5
+  spectral_index_gamma: 2.0
+  temperature_grid_kev:
+  - 0.5
+  - 0.7
+  - 1.0
+  - 1.5
+  - 2.0
+  - 3.0
+  - 5.0
+  - 7.0
+  - 10.0
+  temperature_lx_relation: kettula2015
+stacking:
+  perform_stacking: true
+  use_masked_map: true   # Use masked X-ray map (sources removed) for stacking
+  stack_all_groups: false
+  stack_detected_only: false
+  stack_nondetected_only: true   # Stack only non-detected groups
+  # Default redshift bins (used if no sample-specific bins are provided)
+  redshift_bins: [0.05, 0.65, 1.35, 2.30, 3.80]
+
+  # Sample-specific redshift bins (derived from equal-N optimization script)
+  # CW-All (cosmos-web full sample)
+  # Best choice (K=4) – uncommented and used:
+  #redshift_bins_cw_all: [0.10, 0.96, 1.52, 2.42, 3.80]
+  # Other options from optimize_redshift_bins.py:
+  #redshift_bins_cw_all: [0.10, 1.15, 2.09, 3.80]
+  redshift_bins_cw_all: [0.05, 0.85, 1.3, 2.2, 3.8]
+  # CW-HCG (HCG-like subsample)
+  # Best choice (K=4) – uncommented and used:c
+  #redshift_bins_cw_hcg: [0.10, 0.91, 1.33, 1.76, 3.80]
+  # Other options from optimize_redshift_bins.py:
+  #redshift_bins_cw_hcg: [0.10, 0.98, 1.64, 3.80]
+  redshift_bins_cw_hcg: [0.05,0.85,1.3, 2.2, 3.5]
+  min_groups_per_bin: 60        # Require enough groups per bin for stable stack
+  stacking_method: median
+  sigma_clip: 1.0
+  bootstrap_iterations: 2000
+  background_method: bin_median
+  save_local_comparison: false
+  exclude_suspected_false_positives: false
+  exclude_contaminated: true
+  background_inner_factor: 2.
+  background_outer_factor: 3.
+  lambda_star_min_cw_all: 2.0
+  detected_only_snr_min: 0.0
+  detected_only_min_groups_per_bin: 3
+  nondetected_min_groups_per_bin: 3   # Match min_groups_per_bin for non-detected
+  radial_bin_width_arcsec: 2.75   # 2.0 arcsec bins for fainter signal
+  max_radius_kpc: 500
+  max_radius_arcsec: 60.0
+  # When set, profile extends to this multiple of R500 and x-axis is r/R500 (0–1). Uses median R500 from xray_catalog per z-bin.
+  # Choose ONE approach:
+
+# Option A: Physical kpc (best for non-detected)
+  #max_radius_kpc: 500
+  #max_radius_r500: null  # Disable
+
+  # Option B: Normalized by R500 (better for scaling relations)
+  max_radius_kpc: null   # Disable
+  max_radius_r500: 3.0   # Extend to 3×R500 so β-model SB=background line is within x-range
+  
+  # Background annulus: regular (all groups / detected)
+  background_inner_kpc: 450.0
+  background_outer_kpc: 750.0
+  # Wider for non-detected stacks (avoids residual group signal)
+  nondetected_background_inner_kpc: 600
+  nondetected_background_outer_kpc: 1000
+  background_sigma_clip: 2.0
+  background_min_coverage_fraction: 0.5
+  # K-correction: power-law index α for rest-frame flux (kT~2 keV groups: α ≈ 1.0)
+  k_correction_alpha: 1.0
+  # Optional: path to exposure map (combined Chandra+XMM, same grid as count-rate map)
+  exposure_map: /Users/gozalig1/Projects/compact-groups-xray-analysis/data/xray-map/cosmos_chaxmm14_520_expmap.fits
+  chandra_match_radius_arcsec: 10.0        # Smaller radius (only central AGN)
+  chandra_central_flux_min_soft: 1.0e-15  # RENAME: min, not max
+  # Optional per-group coverage cut: require at least this fraction of pixels inside 0–R500
+  # to be unmasked before including a group in the stack (0.0 = disable).
+  min_unmasked_fraction_within_r500: 0.5
+
+  # Systematic uncertainties (for paper; informational only)
+  systematic_uncertainties:
+    background_subtraction: 0.10    # 10% uncertainty in background level
+    k_correction: 0.05              # 5% uncertainty in K-correction
+    psf_normalization: 0.08         # 8% uncertainty in PSF model
+    exposure_map: 0.05              # 5% uncertainty in exposure weighting
+visualization:
+  dpi: 150
+  figure_format: png
+  show_plots: false
+  color_map: viridis
+analysis:
+  verbose: true
+  n_jobs: 4
+  save_intermediate: true

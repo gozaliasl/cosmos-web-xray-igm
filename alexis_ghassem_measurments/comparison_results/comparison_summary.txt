@@ -1,0 +1,124 @@
+================================================================================
+ALEXIS vs GHASSEM MEASUREMENT COMPARISON SUMMARY
+================================================================================
+
+
+Redshift ()
+--------------------------------------------------------------------------------
+  Number of measurements: 113
+  Pearson correlation: r = 1.0000, p = 0.0000e+00
+  Spearman correlation: ρ = 1.0000, p = 1.0560e-261
+  Linear fit: y = 1.0000x + -2.68e-05
+  R² = 1.0000
+  Median difference: 0.00e+00 (0.00%)
+  Mean absolute difference: 0.01%
+  Std of differences: 0.02%
+  NMAD: 0.00e+00
+
+Flux (erg cm⁻² s⁻¹)
+--------------------------------------------------------------------------------
+  Number of measurements: 113
+  Pearson correlation: r = 1.0000, p = 0.0000e+00
+  Spearman correlation: ρ = 1.0000, p = 0.0000e+00
+  Linear fit: y = 1.9989x + 3.47e-21
+  R² = 1.0000
+  Median difference: 6.37e-16 (99.89%)
+  Mean absolute difference: 99.89%
+  Std of differences: 0.00%
+  NMAD: 1.82e-16
+
+Luminosity (erg s⁻¹)
+--------------------------------------------------------------------------------
+  Number of measurements: 113
+  Pearson correlation: r = 0.9942, p = 2.3776e-109
+  Spearman correlation: ρ = 0.9970, p = 2.2399e-125
+  Linear fit: y = 0.8497x + -7.88e+41
+  R² = 0.9884
+  Median difference: -9.95e+41 (-14.54%)
+  Mean absolute difference: 17.58%
+  Std of differences: 15.35%
+  NMAD: 1.52e+42
+
+Temperature (keV)
+--------------------------------------------------------------------------------
+  Number of measurements: 113
+  Pearson correlation: r = 0.9649, p = 2.6160e-66
+  Spearman correlation: ρ = 0.9819, p = 4.4813e-82
+  Linear fit: y = 0.9433x + 2.80e-01
+  R² = 0.9311
+  Median difference: 2.44e-01 (27.54%)
+  Mean absolute difference: 25.82%
+  Std of differences: 16.41%
+  NMAD: 1.04e-01
+
+M200 (Temperature-based) (M☉)
+--------------------------------------------------------------------------------
+  Number of measurements: 113
+  Pearson correlation: r = 0.9811, p = 5.5586e-81
+  Spearman correlation: ρ = 0.9652, p = 1.8086e-66
+  Linear fit: y = 4.3816x + 1.87e+13
+  R² = 0.9625
+  Median difference: 1.21e+14 (409.25%)
+  Mean absolute difference: 431.12%
+  Std of differences: 76.38%
+  NMAD: 3.13e+13
+
+M200 (Luminosity-based) (M☉)
+--------------------------------------------------------------------------------
+  Number of measurements: 113
+  Pearson correlation: r = 0.7601, p = 1.6376e-22
+  Spearman correlation: ρ = 0.9611, p = 7.7847e-64
+  Linear fit: y = 0.7329x + -5.73e+12
+  R² = 0.5777
+  Median difference: -1.59e+13 (-58.67%)
+  Mean absolute difference: 55.44%
+  Std of differences: 22.82%
+  NMAD: 5.11e+12
+
+SNR ()
+--------------------------------------------------------------------------------
+  Number of measurements: 113
+  Pearson correlation: r = 1.0000, p = 4.3752e-248
+  Spearman correlation: ρ = 0.9998, p = 1.6608e-191
+  Linear fit: y = 0.9996x + 1.35e-03
+  R² = 1.0000
+  Median difference: 5.45e-04 (0.02%)
+  Mean absolute difference: 0.11%
+  Std of differences: 0.12%
+  NMAD: 4.06e-03
+
+RA (deg)
+--------------------------------------------------------------------------------
+  Number of measurements: 113
+  Pearson correlation: r = 1.0000, p = 0.0000e+00
+  Spearman correlation: ρ = 1.0000, p = 1.6983e-300
+  Linear fit: y = 1.0000x + -1.66e-04
+  R² = 1.0000
+  Median difference: -4.00e-07 (-0.00%)
+  Mean absolute difference: 0.00%
+  Std of differences: 0.00%
+  NMAD: 3.85e-06
+
+DEC (deg)
+--------------------------------------------------------------------------------
+  Number of measurements: 113
+  Pearson correlation: r = 1.0000, p = 0.0000e+00
+  Spearman correlation: ρ = 1.0000, p = 0.0000e+00
+  Linear fit: y = 1.0000x + 2.60e-06
+  R² = 1.0000
+  Median difference: -3.13e-07 (-0.00%)
+  Mean absolute difference: 0.00%
+  Std of differences: 0.00%
+  NMAD: 4.16e-06
+
+R200 (kpc)
+--------------------------------------------------------------------------------
+  Number of measurements: 113
+  Pearson correlation: r = 0.9631, p = 4.4314e-65
+  Spearman correlation: ρ = 0.9208, p = 3.3127e-47
+  Linear fit: y = 1.6883x + 1.21e+01
+  R² = 0.9275
+  Median difference: 3.12e+02 (69.77%)
+  Mean absolute difference: 71.89%
+  Std of differences: 8.17%
+  NMAD: 5.55e+01

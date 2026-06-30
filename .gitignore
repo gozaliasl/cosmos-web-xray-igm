@@ -1,0 +1,28 @@
+# Outputs
+outputs/
+*.fits
+*.csv
+
+# LaTeX build artefacts
+paper/*.aux
+paper/*.log
+paper/*.blg
+paper/*.bbl
+paper/*.fls
+paper/*.fdb_latexmk
+paper/*.out
+paper/*.synctex.gz
+paper/%OUTDIR%/
+
+# Large figures (keep source PNGs under ~5MB)
+paper/figures/xray_map_full_with_showcase.pdf
+paper/figures/xray_map_full.png
+paper/figures/xray_map_full_simple.png
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# OS
+.DS_Store
