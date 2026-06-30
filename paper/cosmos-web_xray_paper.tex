@@ -262,6 +262,7 @@ Using a uniform X-ray analysis pipeline with a SNR~$\geq 2.0$ detection threshol
 \begin{appendix}
 
 \section{Radial surface-brightness stacking and PSF tests}
+\label{sec:radial_stack}
 
 \subsection{Radial surface-brightness profiles}
 
@@ -346,6 +347,132 @@ To test for residual systematics and verify that our signal is not driven by bac
 \end{enumerate}
 The resulting random stack is shown as the grey dotted line in the figures. By construction it traces the effective background and any large-scale residuals in the mosaic. In all redshift bins the random stacks remain well below the group curves and are consistent with a slowly varying background level, confirming that the excess emission seen in the blue curves is genuinely associated with the galaxy groups and not an artefact of the background subtraction or mosaicking.
 
+%-------------------------------------------------------------------
+\section{Average intra-group X-ray surface brightness profiles}
+\label{sec:avg_profiles}
+%-------------------------------------------------------------------
+
+We apply the stacking procedure described in Section~\ref{sec:radial_stack} to
+the full CW-All sample to obtain average radial X-ray surface brightness
+profiles for both X-ray detected and non-detected groups.
+Following \citet{Popesso2025}, we stack all groups in each redshift bin without
+distinguishing between detected and non-detected systems in the first instance,
+then compare the two sub-populations explicitly to characterise the drivers of
+scatter in the $L_{\rm X}$--$M_{200}$ relation.
+
+\subsection{Redshift binning and profile construction}
+\label{sec:profile_zbins}
+
+Groups are divided into four redshift bins: $0.05 \leq z < 0.85$
+($N_{\rm nd} = 259$, $N_{\rm det} = 195$),
+$0.85 \leq z < 1.30$ ($N_{\rm nd} = 261$, $N_{\rm det} = 93$),
+$1.30 \leq z < 2.20$ ($N_{\rm nd} = 327$, $N_{\rm det} = 91$), and
+$2.20 \leq z < 3.80$ ($N_{\rm nd} = 334$, $N_{\rm det} = 118$),
+where $N_{\rm nd}$ and $N_{\rm det}$ are the numbers of non-detected
+and detected groups per bin, respectively.
+Profiles are extracted in 2-arcsec annular bins out to $r_{200}$, the virial
+radius of each group estimated from the stacking median $R_{500}$ and
+$R_{500}/R_{200} \approx 0.65$.  The maps are re-centred on each group's
+optical position, rescaled to units of $r/r_{200}$, and averaged with equal
+weighting after masking X-ray point sources and neighbours within
+$2\,r_{200}$.
+The background is estimated from an outer annulus at $1.5$--$2.5\,R_{500}$
+and subtracted from every stacked profile.
+Radial profiles are shown in Figure~\ref{fig:profiles_comparison}, where
+each panel corresponds to a redshift bin and the $1\sigma$ uncertainty band
+is derived from bootstrapping over the group sample.
+All profiles are best described by a $\beta$-model with a fixed slope
+$\beta = 0.5$ \citep[following][]{Popesso2025}, shown as the green solid
+line in each panel.
+
+\subsection{Detected versus non-detected groups}
+\label{sec:profiles_det_vs_nondet}
+
+Figure~\ref{fig:profiles_comparison} overlays the average profiles of
+X-ray detected groups (blue shaded region) and non-detected groups (red
+shaded region) in each redshift bin.  Consistent with the findings of
+\citet{Popesso2024} and \citet{Popesso2025} in the eFEDS field at $z < 0.2$,
+we find that detected groups in COSMOS-Web exhibit systematically brighter
+and more centrally concentrated X-ray emission than their non-detected
+counterparts at the same redshift.
+
+The stacked surface brightness of detected groups exceeds that of
+non-detected groups by $\Delta\log_{10}(\mathrm{SB}) \approx 0.4$~dex
+within $0.2\,r_{200}$ in the redshift bin $0.85 \leq z < 1.30$, which
+contains the largest number of groups with the highest signal-to-noise
+stacked profiles.  The separation is also visible in the $0.05 \leq z < 0.85$
+and $2.20 \leq z < 3.80$ bins at the $\sim$0.1--0.3~dex level, while the
+$1.30 \leq z < 2.20$ bin shows large bootstrapping uncertainties due to
+the lower individual group fluxes at these redshifts.
+This central brightness difference mirrors the result of
+\citet{Popesso2025}, who find in the eFEDS field at $z < 0.2$ that
+undetected groups have less than $33\pm15\%$ of the X-ray luminosity
+concentrated within the inner $0.2\,r_{200}$, compared to $67\pm12\%$
+for detected systems.  The profiles converge to similar levels near
+$r_{200}$, indicating that the total gas content within the virial radius
+differs less than its central concentration between the two populations.
+
+The morphological difference between detected and non-detected groups
+persists across all four redshift bins probed here, spanning
+$0.05 \leq z \leq 3.80$.  This redshift leverage is substantially larger
+than in previous studies based on low-redshift surveys
+\citep[e.g.,][]{Popesso2024,Popesso2025}, and demonstrates that the
+connection between central gas concentration and X-ray detectability
+is already established at $z \sim 1$--3.
+
+\subsection{Comparison with Popesso et al.\ (2025)}
+\label{sec:profile_popesso_comparison}
+
+\citet{Popesso2025} present average X-ray surface brightness profiles for
+GAMA-selected galaxy groups in the eFEDS field in six halo mass bins spanning
+$12.2 < \log(M_{200}/\mathrm{M_\odot}) < 14.0$ at $z < 0.2$.
+Their profiles are expressed in units of $\log(L_{\rm X})\,[\mathrm{erg\,s^{-1}\,kpc^{-2}}]$
+versus $\log(r/r_{200})$, and all are well described by $\beta$-models with
+$\beta = 0.5$.
+
+Our COSMOS-Web profiles probe a complementary regime: we reach
+$z \sim 1$--3 and cover groups spanning a similar mass range but at
+look-back times of 8--12~Gyr.  The profile shapes in our lowest-redshift
+bin ($0.05 \leq z < 0.85$, $\langle z \rangle \approx 0.62$) are broadly
+consistent with the \citet{Popesso2025} profiles at the lower end of their
+mass range, with comparable surface brightness normalisation and $\beta$-model
+slope once the different X-ray bands and cosmological dimming are accounted for.
+At $z > 1$, both detected and non-detected profiles become progressively
+shallower and more consistent with a flat background, reflecting both the
+increased cosmological dimming of the hot gas emission and the lower overall
+gas content expected in lower-mass, higher-redshift groups
+\citep[see also][]{Sun2009,Lovisari2015}.
+
+A key difference from \citet{Popesso2025} is that, while their analysis
+brackets the profiles between detected and non-detected at fixed halo mass,
+our comparison is performed at fixed redshift.  At the halo masses typical
+of our sample ($M_{200} \sim 10^{13}\,\mathrm{M_\odot}$), AGN feedback is
+expected to efficiently expel baryons beyond $r_{500}$, reducing the central
+gas concentration and consequently suppressing X-ray detectability
+\citep{Oppenheimer2021}.  The consistent detection of a concentration
+difference between detected and non-detected groups across the full
+redshift range $0.05$--$3.80$ suggests that this feedback-driven scatter
+in the $L_{\rm X}$--$M_{200}$ relation is already in place at $z \sim 2$--3,
+providing new observational constraints for hydrodynamical simulations.
+
+\begin{figure*}
+\centering
+\includegraphics[width=\textwidth]{figures/stacking_radial_profiles_comparison}
+\caption{Average X-ray surface brightness profiles of COSMOS-Web groups
+  (CW-All) in four redshift bins.  In each panel, the blue shaded region
+  shows the $1\sigma$ bootstrap band for X-ray detected groups; the red
+  shaded region shows the corresponding band for non-detected groups.
+  Solid lines indicate the smoothed stacked profile for each sub-population.
+  The green dashed curve shows the best-fit $\beta$-model ($\beta = 0.5$)
+  to the detected groups.  Vertical lines mark $R_{500}$ (orange dashed)
+  and $R_{200}$ (purple dotted).  At all redshifts, detected groups show
+  brighter, more centrally concentrated profiles than non-detected groups,
+  consistent with findings from the eFEDS field at $z < 0.2$
+  \citep{Popesso2024,Popesso2025}.}
+\label{fig:profiles_comparison}
+\end{figure*}
+
+%-------------------------------------------------------------------
 \section{Background method comparison}
 
 To quantify the impact of the background-estimation scheme, we compared photometry obtained with the default per-source annulus background to measurements using the redshift-binned median background. Figure~\ref{fig:background_comparison} shows object-by-object comparisons for $L_{\rm X}$, flux, and net counts in the CW-All sample. Each panel plots the annulus-based quantity against its binned-median counterpart, together with a 1:1 line and bands corresponding to the measured $1\sigma$ (solid) and $2\sigma$ (dotted) scatter between the two methods in log space.
@@ -412,7 +539,9 @@ For the CW-All catalog, the median ratio of binned-median to annulus-based $L_{\
 
 \bibitem[Popesso et al.(2024)]{Popesso2024} Popesso, P., Biviano, A., Bulbul, E., et al.\ 2024, MNRAS, 527, 895
 
-\bibitem[Popesso et al.(2025)]{Popesso2025} Popesso, P., et al.\ 2025, A\&A[arXiv:2411.17128], in press
+\bibitem[Popesso et al.(2025)]{Popesso2025} Popesso, P., Marini, I., Dolag, K., et al.\ 2025, A\&A, submitted [arXiv:2411.17128]
+
+\bibitem[Oppenheimer et al.(2021)]{Oppenheimer2021} Oppenheimer, B.~D., Bogd\'an, \'A., Crain, R.~A., et al.\ 2021, ApJ, 912, L31
 
 \bibitem[Robson \& Dav\'e(2023)]{Robson2023} Robson, D. \& Dav\'e, R.\ 2023, MNRAS, 518, 5826
 
